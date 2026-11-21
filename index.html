@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Código Aleatório</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #222;
+    }
+
+    #codigo {
+        background: #eee;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 20px 0;
+        word-break: break-all;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .copiar {
+        background: #28a745;
+    }
+
+    .copiar:hover {
+        background: #1e7e34;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Gerador de Código</h2>
+
+    <p>Seu código aleatório:</p>
+
+    <div id="codigo">Clique em gerar</div>
+
+    <button onclick="gerarCodigo()">
+        Gerar Código
+    </button>
+
+    <button class="copiar" onclick="copiarCodigo()">
+        Copiar Código
+    </button>
+</div>
+
+<script>
+function gerarCodigo() {
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let codigo = "";
+
+    for (let i = 0; i < 12; i++) {
+        codigo += caracteres.charAt(
+            Math.floor(Math.random() * caracteres.length)
+        );
+    }
+
+    document.getElementById("codigo").innerText = codigo;
+}
+
+function copiarCodigo() {
+    const codigo = document.getElementById("codigo").innerText;
+
+    if (codigo === "Clique em gerar") {
+        alert("Gere um código primeiro!");
+        return;
+    }
+
+    navigator.clipboard.writeText(codigo).then(() => {
+        alert("Código copiado com sucesso!");
+    });
+}
+</script>
+
+</body>
+</html>
